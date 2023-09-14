@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        /* background-color: antiquewhite; */
+        background: url("https://imgs.search.brave.com/8VQpLJ-yryXJ-lPtDuhf35AhtPa66ridfAtkCKB9qc4/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudW5zcGxhc2gu/Y29tL3Bob3RvLTE1/NzUyMDMwOTE1ODYt/NjExZmU1MDViYjBl/P2l4bGliPXJiLTQu/MC4zJml4aWQ9TTN3/eE1qQTNmREI4TUh4/bGVIQnNiM0psTFda/bFpXUjhOSHg4ZkdW/dWZEQjhmSHg4ZkE9/PSZ3PTEwMDAmcT04/MA");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h1 {
+        /* border: 2px solid red; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.9rem;
+        padding: 1rem;
+        color: #333;
+    }
+
+    .clock {
+        /* border: 2px solid rebeccapurple; */
+        height: 30vh;
+        width: 30%;
+        font-size: 1.7rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        border: 2px solid #333;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .clock {
+        animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+        from {
+            transform: scale(1);
+        }
+
+        to {
+            transform: scale(1.05);
+        }
+    }
+</style>
+
+<body>
+
+    <h1>Clock</h1>
+    <div class="clock">
+        <p id="date"></p>
+        <p id="time"></p>
+    </div>
+
+
+
+    <script>
+        const week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        // console.log(week)
+        function updateTime() {
+            let now = new Date();
+            // console.log(now);
+            document.getElementById("time").innerText =
+                zeroPadding(now.getHours(), 2) + ":" +
+                zeroPadding(now.getMinutes(), 2) + ":" +
+                zeroPadding(now.getSeconds(), 2);
+
+            document.getElementById("date").innerText =
+                now.getFullYear() + "-" +
+                zeroPadding(now.getMonth() + 1, 2) + "-" +
+                zeroPadding(now.getDate(), 2) + " " +
+                week[now.getDay()];
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+        function zeroPadding(num, digit) {
+            return String(num).padStart(digit, "0");
+        }
+
+
+
+    </script>
+</body>
+
+</html>
